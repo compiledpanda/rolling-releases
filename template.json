@@ -1,0 +1,31 @@
+{
+  "title": "",
+  "initiatives|themes": [
+    {
+      "title": "",
+      "features|epics": [
+        {
+          "id": "",
+          "title": ""
+        }
+      ],
+      "releases": [{
+        "id": "",
+        "title": "",
+        "not-before": "",
+        "not-after": ""
+      }],
+      "milestones": [{
+        "id": "",
+        "feature": "",
+        "release": "",
+        "items": [{
+          "provider": "github.com|jira.com|<none>",
+          "query": "jql, ghquery",
+          "config?": {},
+          "text": ""
+        }]
+      }]
+    }
+  ]
+}

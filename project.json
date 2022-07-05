@@ -1,0 +1,65 @@
+{
+  "title": "Rolling Releases",
+  "initiatives": [
+    {
+      "title": "POC",
+      "description": "Wiew a dashboard with items from Jira",
+      "features": [
+        {"id": "setup", "title": "App Setup"},
+        {"id": "view", "title": "View Dashboard"},
+        {"id": "jira", "title": "Jira Integration"}
+      ],
+      "releases": [
+        {"id": "base", "title": "Display Dashboard"},
+        {"id": "jira", "title": "Pull From Jira"},
+        {"id": "poc", "title": "POC Release!"}
+      ],
+      "milestones": [
+        {"feature": "setup", "release": "base", "items": [
+          {"text": "Hello World"},
+          {"text": "Blank App"}
+        ]},
+        {"feature": "view", "release": "base", "items": [
+          {"text": "Load Project JSON"},
+          {"text": "View Initiatives"},
+          {"text": "View Features"},
+          {"text": "View Milestones"},
+          {"text": "View Releases"}
+        ]},
+        {"feature": "view", "release": "jira", "items": [
+          {"text": "View Milestone Dependencies"}
+        ]},
+        {"feature": "jira", "release": "jira", "items": [
+          {"text": "Create test jira account w/ sample data"},
+          {"text": "Store Auth Token & Authenticate"},
+          {"text": "Query Milestone items via JQL"},
+          {"text": "Display Milestone items via JQL"}
+        ]},
+        {"feature": "setup", "release": "poc", "items": [
+          {"text": "Update Readme"}
+        ]},
+        {"feature": "view", "release": "poc", "items": [
+          {"text": "Support groups of milestone items"}
+        ]},
+        {"feature": "jira", "release": "poc", "items": [
+          {"text": "Display item status"},
+          {"text": "Show item detail(s)"},
+          {"text": "Link to item"}
+        ]}
+      ]
+    },
+    {
+      "title": "MVP",
+      "features": [
+        {"id": "cicd", "title": "CI/CD"},
+        {"id": "github", "title": "Integrate GitHub"},
+        {"id": "www", "title": "WWW"}
+      ],
+      "releases": [
+        {"id": "github", "title": "Pull From GitHub"},
+        {"id": "www_docs", "title": "WWW & Documentation"}
+      ]
+    },
+    {"title": "Editor?"}
+  ]
+}
