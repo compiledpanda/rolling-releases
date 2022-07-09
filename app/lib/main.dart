@@ -69,13 +69,29 @@ class _DashboardWidgetState extends State<DashboardWidget> {
       );
     }
 
-    return Center(
-      child: InteractiveViewer(
-        boundaryMargin: const EdgeInsets.all(20.0),
-        minScale: 0.1,
-        maxScale: 1.6,
-        child: const Text('Dashboard', style: TextStyle(fontSize: 16)),
-      ),
+    return Column(
+      children: _config!.initiatives.map((initiative) {
+        return InitiativeWidget(initiative);
+      }).toList(),
     );
+
+    // return Center(
+    //   child: InteractiveViewer(
+    //     boundaryMargin: const EdgeInsets.all(20.0),
+    //     minScale: 0.1,
+    //     maxScale: 1.6,
+    //     child: const Text('Dashboard', style: TextStyle(fontSize: 16)),
+    //   ),
+    // );
+  }
+}
+
+class InitiativeWidget extends StatelessWidget {
+  final Initiative initiative;
+  const InitiativeWidget(this.initiative, {Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(initiative.title!, style: const TextStyle(fontSize: 16));
   }
 }
