@@ -21,7 +21,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Scaffold(body: DashboardWidget()),
+      home: const Scaffold(
+        backgroundColor: Colors.white,
+        body: DashboardWidget(),
+      ),
     );
   }
 }
@@ -102,33 +105,83 @@ class InitiativeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     int releases =
         initiative.releases != null ? initiative.releases!.length : 1;
+    int features =
+        initiative.features != null ? initiative.features!.length : 1;
 
-    List<Widget> children = [
-      Text(initiative.title!, style: const TextStyle(fontSize: 16)),
-    ];
+    List<Widget> children = [];
 
     if (initiative.features != null) {
-      children.addAll(
-          initiative.features!.map((feature) => FeatureWidget(feature)));
+      children.addAll(Iterable<int>.generate(initiative.features!.length)
+          .toList()
+          .map((i) => FeatureWidget(initiative, i)));
     }
 
-    return Container(
-      margin: const EdgeInsets.all(10.0),
-      width: 200.0 * releases, // TODO take into account milestones
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: children,
+    var width = 200.0 * releases + 48.0; // TODO take into account milestones
+    var height = 48.0 * features + 24.0; // TODO take into account # of rows
+
+    return Stack(children: <Widget>[
+      Container(
+        margin: const EdgeInsets.all(12.0),
+        decoration: BoxDecoration(
+          // color: Colors.red,
+          border: Border.all(color: Colors.grey),
+          borderRadius: BorderRadius.circular(4),
+        ),
+        width: width,
+        height: height,
       ),
-    );
+      Container(
+        color: Colors.white,
+        margin: const EdgeInsets.only(left: 24.0, top: 4.0),
+        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        child: Text(initiative.title!, style: const TextStyle(fontSize: 16)),
+      ),
+      Container(
+        // color: Colors.red,
+        margin: const EdgeInsets.all(24.0),
+        width: width,
+        height: height,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: children,
+        ),
+      ),
+    ]);
   }
 }
 
 class FeatureWidget extends StatelessWidget {
-  final Feature feature;
-  const FeatureWidget(this.feature, {Key? key}) : super(key: key);
+  final Initiative initiative;
+  final int featureIndex;
+  const FeatureWidget(this.initiative, this.featureIndex, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Text(feature.title!, style: const TextStyle(fontSize: 16));
+    Feature feature = initiative.features![featureIndex];
+    int releases =
+        initiative.releases != null ? initiative.releases!.length : 1;
+
+    var width = 150.0 * releases + 48.0; // TODO take into account milestones
+    var height = 24.0;
+
+    return Stack(children: <Widget>[
+      Container(
+        margin: const EdgeInsets.all(12.0),
+        decoration: BoxDecoration(
+          // color: Colors.red,
+          border: Border.all(color: Colors.black87),
+          borderRadius: BorderRadius.circular(4),
+        ),
+        width: width,
+        height: height,
+      ),
+      Container(
+        color: Colors.white,
+        margin: const EdgeInsets.only(left: 24.0, top: 4.0),
+        padding: const EdgeInsets.symmetric(horizontal: 4.0),
+        child: Text(feature.title!, style: const TextStyle(fontSize: 16)),
+      ),
+    ]);
   }
 }
